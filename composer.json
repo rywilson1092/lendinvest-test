@@ -1,5 +1,6 @@
 {
-    "name": "LendInvest Test",
+    "name": "lendinvest-test",
+    "homepage": "https://github.com/rywilson1092/lendinvest-test",
     "description": "The goal of this test is to allow users to invest and monthly interest to be paid.",
     "minimum-stability": "stable",
     "license": "proprietary",
