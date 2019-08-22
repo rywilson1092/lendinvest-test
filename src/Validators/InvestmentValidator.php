@@ -8,11 +8,13 @@ use LendInvest\Validators\Interfaces\InvestmentValidatorInterface;
 
 use Datetime;
 
-class InvestmentValidator implements InvestmentValidatorInterface{
+class InvestmentValidator implements InvestmentValidatorInterface
+{
 
-    public function validateIsInvestmentBeforeLoanEndDate( datetime $endDate , datetime $investmentDate) : bool {
+    public function validateIsInvestmentBeforeLoanEndDate( datetime $endDate , datetime $investmentDate) : bool
+    {
 
-        if($investmentDate->getTimestamp() < $endDate->getTimestamp()){
+        if($investmentDate->getTimestamp() < $endDate->getTimestamp()) {
             return true;
         }else{
             return false;
@@ -20,18 +22,20 @@ class InvestmentValidator implements InvestmentValidatorInterface{
 
     }
 
-    public function validateIsTrancheEnoughRemaining( float $amountRemaining , float $amount ) : bool{
+    public function validateIsTrancheEnoughRemaining( float $amountRemaining , float $amount ) : bool
+    {
 
-        if($amount <= $amountRemaining){
+        if($amount <= $amountRemaining) {
             return true;
         }else{
             return false;
         }
     }
 
-    public function validateWalletBalance( float $walletBalance , float $investmentAmount )  : bool{
+    public function validateWalletBalance( float $walletBalance , float $investmentAmount )  : bool
+    {
 
-        if($investmentAmount <= $walletBalance){
+        if($investmentAmount <= $walletBalance) {
             return true;
         }else{
             return false;

@@ -7,7 +7,8 @@ namespace LendInvest\Validators\Interfaces;
 
 use Datetime;
 
-interface InvestmentValidatorInterface{
+interface InvestmentValidatorInterface
+{
 
     public function validateIsInvestmentBeforeLoanEndDate( datetime $endDate , datetime $investmentDate) : bool;
 

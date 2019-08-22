@@ -7,7 +7,8 @@ namespace LendInvest\Models\Interfaces;
 
 use LendInvest\Models\Interfaces\InvestmentInterface;
 
-interface InvestmentsInterface{
+interface InvestmentsInterface
+{
 
     public function submitInvestment( InvestmentInterface $investment ) : bool;
 

@@ -9,7 +9,8 @@ use LendInvest\Models\Interfaces\TrancheInterface;
 
 use DateTime;
 
-interface LoanInterface{
+interface LoanInterface
+{
 
     public function addTranche( TrancheInterface $tranche ) : void;
 

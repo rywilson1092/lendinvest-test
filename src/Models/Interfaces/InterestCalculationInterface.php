@@ -8,7 +8,8 @@ namespace LendInvest\Models\Interfaces;
 use LendInvest\Models\Interfaces\InterestCalculationInterface;
 use LendInvest\Models\Interfaces\InvestmentInterface;
 
-interface InterestCalculationInterface{
+interface InterestCalculationInterface
+{
 
     public function getInvestment() : InvestmentInterface;
 

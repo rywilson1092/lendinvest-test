@@ -9,29 +9,34 @@ use LendInvest\Models\Interfaces\InvestmentInterface;
 
 use Datetime;
 
-class InterestCalculation implements InterestCalculationInterface{
+class InterestCalculation implements InterestCalculationInterface
+{
 
     private $investment;
     private $startDate;
     private $endDate;
     private $interest;
 
-    public function __construct( InvestmentInterface $investment , DateTime $startDate , DateTime $endDate){
+    public function __construct( InvestmentInterface $investment , DateTime $startDate , DateTime $endDate)
+    {
         $this->investment = $investment;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->interest = $this->calculateInterest();
     }
 
-    public function getInvestment() : InvestmentInterface {
+    public function getInvestment() : InvestmentInterface
+    {
         return $this->investment;
     }
 
-    public function getInterest() : float{
+    public function getInterest() : float
+    {
         return $this->interest;
     }
 
-    private function calculateInterest() : float {
+    private function calculateInterest() : float
+    {
 
         /* Calculate Daily Interest */
         $dailyInterestRate = $this->calculateDailyInterestRate();
@@ -46,36 +51,35 @@ class InterestCalculation implements InterestCalculationInterface{
 
         
 
-        return round($interestDays * $dailyInterestAmount , 2);
+        return round($interestDays * $dailyInterestAmount, 2);
     }
 
-    private function calculateDailyInterestRate() : float {
+    private function calculateDailyInterestRate() : float
+    {
         return $this->investment->getTranche()->getInterestRate() / cal_days_in_month(
             CAL_GREGORIAN,
-            (int) $this->endDate->format('m') ,
+            (int) $this->endDate->format('m'),
             (int)$this->endDate->format('Y')
         );
     }
 
-    private function calculateInterestDays() : int {
+    private function calculateInterestDays() : int
+    {
 
         $interestDays = 0;
         
-        if( 
-            ($this->investment->getInvestmentDate()->getTimestamp() > $this->startDate->getTimestamp())
-            &&
-            ($this->investment->getInvestmentDate()->getTimestamp() < $this->endDate->getTimestamp())
+        if(($this->investment->getInvestmentDate()->getTimestamp() > $this->startDate->getTimestamp())
+            
+            && ($this->investment->getInvestmentDate()->getTimestamp() < $this->endDate->getTimestamp())
         ) {
-            $interestDays += $this->endDate->diff($this->investment->getInvestmentDate())->format("%a"); 
-        }else if(
-
-            ($this->investment->getInvestmentDate()->getTimestamp() < $this->startDate->getTimestamp())
-            &&
-            ($this->investment->getInvestmentDate()->getTimestamp() < $this->endDate->getTimestamp())
-        ){
-            $interestDays += $this->endDate->diff($this->startDate)->format("%a"); 
+            $interestDays += $this->endDate->diff($this->investment->getInvestmentDate())->format("%a") + 1; 
+        }else if(($this->investment->getInvestmentDate()->getTimestamp() < $this->startDate->getTimestamp())
+            
+            && ($this->investment->getInvestmentDate()->getTimestamp() < $this->endDate->getTimestamp())
+        ) {
+            $interestDays += $this->endDate->diff($this->startDate)->format("%a") + 1; 
         }
 
-        return $interestDays + 1;
+        return $interestDays;
     }
 }

@@ -5,7 +5,8 @@ namespace LendInvest;
 namespace LendInvest\Models;
 namespace LendInvest\Models\Interfaces;
 
-interface InvestorInterface{
+interface InvestorInterface
+{
 
     public function getWalletBalance() : float;
 

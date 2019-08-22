@@ -7,6 +7,7 @@ namespace LendInvest\Models\Interfaces;
 
 use LendInvest\Models\Interfaces\InterestCalculationsInterface;
 
-interface InterestRunnerInterface{
+interface InterestRunnerInterface
+{
     public function getInterestCalculationsObj() : InterestCalculationsInterface;
 }

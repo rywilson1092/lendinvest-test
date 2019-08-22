@@ -7,7 +7,8 @@ namespace LendInvest\Models\Interfaces;
 
 use DateTime;
 
-interface TrancheInterface{
+interface TrancheInterface
+{
 
     public function getMaximumInvestment() : float;
 

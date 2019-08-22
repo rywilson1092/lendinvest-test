@@ -11,68 +11,76 @@ use LendInvest\Validators\Interfaces\InvestmentValidatorInterface;
 
 use Exception;
 
-class Investments implements InvestmentsInterface{
+class Investments implements InvestmentsInterface
+{
 
     private $investmentValidator;
 
     private $investments = array();
 
-    public function __construct( InvestmentValidatorInterface $investmentValidator){
+    public function __construct( InvestmentValidatorInterface $investmentValidator)
+    {
         $this->investmentValidator = $investmentValidator;
     }
 
-    public function submitInvestment( InvestmentInterface $investment ) : bool{
+    public function submitInvestment( InvestmentInterface $investment ) : bool
+    {
         $this->validateInvestment($investment);
 
-        $investment->getTranche()->makeInvestment( $investment->getAmount() );
+        $investment->getTranche()->makeInvestment($investment->getAmount());
 
-        $investment->getInvestor()->subtractFunds( $investment->getAmount());
+        $investment->getInvestor()->subtractFunds($investment->getAmount());
 
-        array_push($this->investments , $investment);
+        array_push($this->investments, $investment);
 
         return true;
     }
 
-    private function validateInvestment( InvestmentInterface $investment ) : void {
+    private function validateInvestment( InvestmentInterface $investment ) : void
+    {
 
-        $this->validateInvestmentDate( $investment );
-        $this->validateWalletBalance( $investment  );
-        $this->validateAmountRemaining( $investment  );
+        $this->validateInvestmentDate($investment);
+        $this->validateWalletBalance($investment);
+        $this->validateAmountRemaining($investment);
     } 
 
-    private function validateInvestmentDate( InvestmentInterface $investment ) : void {
+    private function validateInvestmentDate( InvestmentInterface $investment ) : void
+    {
         if(!$this->investmentValidator->validateIsInvestmentBeforeLoanEndDate( 
-                $investment->getLoan()->getEndDate() , 
-                $investment->getInvestmentDate()
-            )
-        ){
+            $investment->getLoan()->getEndDate(), 
+            $investment->getInvestmentDate()
+        )
+        ) {
             throw new exception("Loan has expired.");
         }
     }
 
-    private function validateAmountRemaining( InvestmentInterface $investment  ) : void {
+    private function validateAmountRemaining( InvestmentInterface $investment  ) : void
+    {
 
         if(!$this->investmentValidator->validateIsTrancheEnoughRemaining( 
-            $investment->getTranche()->getRemainingInvestment() , 
+            $investment->getTranche()->getRemainingInvestment(), 
             $investment->getAmount()
-            )    
-        ){
+        )    
+        ) {
             throw new exception("Not enough remaining in tranche");
         }
     }
 
-    private function validateWalletBalance( InvestmentInterface $investment  ) : void {
+    private function validateWalletBalance( InvestmentInterface $investment  ) : void
+    {
 
         if(!$this->investmentValidator->validateWalletBalance( 
             $investment->getInvestor()->getWalletBalance(), 
             $investment->getAmount() 
-            )
-        ){
+        )
+        ) {
             throw new exception("Not enough money in wallet");
         }
     }
 
-    public function getInvestments() : array {
+    public function getInvestments() : array
+    {
         return $this->investments;
     }
 }

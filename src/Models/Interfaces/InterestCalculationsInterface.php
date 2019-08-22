@@ -7,7 +7,8 @@ namespace LendInvest\Models\Interfaces;
 
 use LendInvest\Models\Interfaces\InterestCalculationInterface;
 
-interface InterestCalculationsInterface{
+interface InterestCalculationsInterface
+{
 
     public function addInterestCalculation( InterestCalculationInterface $interestCalculation) : void;
 

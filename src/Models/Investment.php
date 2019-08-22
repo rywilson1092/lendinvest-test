@@ -11,7 +11,8 @@ use LendInvest\Models\Interfaces\InvestorInterface;
 
 use DateTime;
 
-class Investment implements InvestmentInterface{
+class Investment implements InvestmentInterface
+{
 
     private $loan;
     private $tranche;
@@ -24,51 +25,61 @@ class Investment implements InvestmentInterface{
         InvestorInterface $investor, 
         float $amount , 
         DateTime $investmentDate
-    ){
-        $this->setLoan( $loan );
-        $this->setTranche( $tranche );
-        $this->setInvestor( $investor );
-        $this->setAmount( $amount );
-        $this->setInvestmentDate( $investmentDate );
+    ) {
+        $this->setLoan($loan);
+        $this->setTranche($tranche);
+        $this->setInvestor($investor);
+        $this->setAmount($amount);
+        $this->setInvestmentDate($investmentDate);
     }
 
-    private function setLoan( LoanInterface $loan) : void {
+    private function setLoan( LoanInterface $loan) : void
+    {
         $this->loan = $loan;
     }
 
-    public function getLoan() : LoanInterface {
+    public function getLoan() : LoanInterface
+    {
         return $this->loan;
     }
 
-    private function setTranche( TrancheInterface $tranche) : void {
+    private function setTranche( TrancheInterface $tranche) : void
+    {
         $this->tranche = $tranche;
     }
 
-    public function getTranche() : TrancheInterface {
+    public function getTranche() : TrancheInterface
+    {
         return $this->tranche;
     }
 
-    private function setInvestor( InvestorInterface $investor) : void {
+    private function setInvestor( InvestorInterface $investor) : void
+    {
         $this->investor = $investor;
     }
 
-    public function getInvestor() : InvestorInterface {
+    public function getInvestor() : InvestorInterface
+    {
         return $this->investor;
     }
 
-    private function setAmount( float $amount) : void {
+    private function setAmount( float $amount) : void
+    {
         $this->amount = $amount;
     }
 
-    public function getAmount() : float {
+    public function getAmount() : float
+    {
         return $this->amount;
     }
 
-    private function setInvestmentDate( datetime $investmentDate) : void {
+    private function setInvestmentDate( datetime $investmentDate) : void
+    {
         $this->investmentDate = $investmentDate;
     }
 
-    public function getInvestmentDate() : datetime {
+    public function getInvestmentDate() : datetime
+    {
         return $this->investmentDate;
     }
 }

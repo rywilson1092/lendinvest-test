@@ -11,7 +11,8 @@ use LendInvest\Models\Interfaces\InvestorInterface;
 
 use DateTime;
 
-interface InvestmentInterface{
+interface InvestmentInterface
+{
 
     public function getLoan() : LoanInterface;
 
