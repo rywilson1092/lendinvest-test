@@ -1,0 +1,14 @@
+version: "3.2"
+services:
+  php7:
+    build: './docker/php7/'
+    volumes:
+      - .:/usr/src/lendinvest-test
+    working_dir: /usr/src/lendinvest-test
+
+  composer:
+    build: './docker/php7/'
+    volumes:
+      - .:/usr/src/lendinvest-test
+    working_dir: /usr/src/lendinvest-test
+    command: composer install

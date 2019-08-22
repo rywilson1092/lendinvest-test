@@ -1,0 +1,26 @@
+{
+    "name": "LendInvest Test",
+    "description": "The goal of this test is to allow users to invest and monthly interest to be paid.",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+      {
+        "name": "Ryan Wilson",
+        "email": "ryanwilsondeveloper7@gmail.com"
+      }
+    ],
+    "require": {
+      "php": ">=7.0",
+      "phpunit/phpunit": ">=6.5"
+    },
+    "autoload": {
+      "psr-4": {
+          "LendInvest\\": "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+          "LendInvestTest\\": "tests/"
+      }
+    }
+  }
